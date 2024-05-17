@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            animation: slideDown 0.5s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .big-404 {
+            font-size: 6em;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: popUp 0.5s ease-in-out 0.5s forwards;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            animation: fadeIn 0.5s ease-out, scaleUp 1s ease-in-out 0.5s forwards;
+            animation-fill-mode: both;
+        }
+
+        p {
+            font-size: 1.2em;
+            animation: fadeIn 0.5s ease-out, slideRight 1s ease-in-out 0.5s forwards;
+            animation-fill-mode: both;
+        }
+
+        .animated-text {
+            font-size: 1.5em;
+            margin-top: 20px;
+            opacity: 0;
+            animation: rotate 1s linear 2s forwards, fadeIn 1s ease-in-out 2s forwards;
+        }
+
+        @keyframes slideDown {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideRight {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleUp {
+            0% {
+                transform: scale(0);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotateY(0deg);
+            }
+            100% {
+                transform: rotateY(360deg);
+            }
+        }
+
+        @keyframes popUp {
+            0% {
+                transform: scale(0);
+            }
+            80% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="big-404">404</div>
+        <h1>Page Not Found</h1>
+        <p>Sorry, the page you are looking for does not exist.</p>
+        <p class="animated-text">But don't worry, we'll help you find your way.</p>
+    </div>
+</body>
+</html>

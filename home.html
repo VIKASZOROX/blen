@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <title>Blen - Online Book Reading & Publishing</title>
+    <style>
+        /* Your CSS styling goes here */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .header {
+            background-color: #4b4a4a;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            font-size: 2.5em;
+            margin: 0;
+            padding: 0;
+            line-height: 1.2;
+        }
+
+        .header img {
+            width: 50px; /* Adjust as needed */
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .navbar {
+            background-color: #555;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .navbar a {
+            font-family: '', sans-serif;
+            font-size: 1.2em;
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 5px;
+            border-bottom: 2px solid transparent;
+            transition: border-bottom 0.3s;
+        }
+
+        .navbar a:hover {
+            border-bottom: 2px solid #fff;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .section p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+
+        .section ul li {
+            margin-bottom: 10px;
+        }
+
+        .section ul li a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .section ul li a:hover {
+            color: #555;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        /* Pop-up box */
+        .popup {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .popup-content {
+            display: none;
+            position: absolute;
+            background-color: #555;
+            padding: 5px;
+            border-radius: 5px;
+            z-index: 1;
+            top: 100%; /* Adjust the distance from the trigger element */
+            left: 0;
+            width: 200px; /* Set the width of the popup box */
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Add box shadow */
+        }
+
+        .popup-content a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .popup-content a:hover {
+            background-color: #444;
+        }
+
+        .popup:hover .popup-content {
+            display: block;
+        }
+
+        /* Custom styles for the navbar */
+.navbar .popup span {
+    color: #fff; /* Change text color to white */
+    font-size: 1.2em; /* Increase text size */
+    animation: glow 1.5s ease-in-out infinite alternate; /* Apply the glow animation */
+}
+
+/* Define the glow animation */
+/* Define the glow animation */
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 10px #dddada, 0 0 20px #dddada, 0 0 30px #dddada; /* Initial glow effect */
+    }
+    50% {
+        text-shadow: 0 0 15px #dddada 0 0 25px #dddada, 0 0 35px #dddada; /* Intermediate glow effect */
+    }
+    100% {
+        text-shadow: 0 0 10px #dddada, 0 0 20px #dddada, 0 0 30px #dddada; /* Final glow effect */
+    }
+}
+
+    </style>
+</head>
+<body onmousemove="trackMouse(event)">
+    <!-- Header -->
+    <div class="header">
+        <div class="container">
+            <h1> ꌃ꒒ꍟꈤ <img src="static/logo.jpeg" alt="Logo"></h1>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="#">̷H̷̷o̷̷m̷̷e̷</a>
+        <a href="about.html">̷A̷̷b̷̷o̷̷u̷̷t̷ ̷U̷̷s̷</a>
+        <a href="books">̷B̷̷o̷̷o̷̷k̷̷s̷</a>
+        <a href="#">̷A̷̷u̷̷t̷̷h̷̷o̷̷r̷̷s̷</a>
+        <a href="#">̷P̷̷u̷̷b̷̷l̷̷i̷̷s̷̷h̷̷i̷̷n̷̷g̷</a>
+        <a href="#">̷C̷̷o̷̷n̷̷t̷a̷̷c̷̷t̷</a>
+        <div class="popup">
+            <span>̷E̷̷x̷̷p̷̷l̷̷o̷̷r̷̷e̷ &#9662;</span> <!-- Adding a down arrow -->
+            <div class="popup-content">
+                <a href="your_all_time_fav.html">̷Y̷̷o̷̷u̷̷r̷ ̷A̷̷l̷̷l̷-̷T̷̷i̷̷m̷̷e̷ ̷F̷a̷̷v̷</a>
+                <a href="top_10_in_blen.html">̷T̷̷o̷̷p̷ ̷1̷̷0̷ ̷i̷̷n̷ ̷B̷̷l̷̷e̷̷n̷</a>
+                <a href="categories.html">̷C̷a̷̷t̷̷e̷̷g̷̷o̷̷r̷̷i̷̷e̷̷s̷</a>
+                <a href="publish.html">̷P̷̷u̷̷b̷̷l̷̷i̷̷s̷̷h̷</a>
+                <a href="books.html">̷R̷̷e̷a̷̷d̷</a>
+                <a href="about.html">̷A̷̷b̷̷o̷̷u̷̷t̷</a>
+                <a href="contact.html">̷C̷̷o̷̷n̷̷t̷a̷̷c̷̷t̷</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="section">
+            <h2>𝖨𝗍 '𝗌 𝖡𝗅𝖾𝗇</h2>
+            <p>
+
+                𝖲𝗍𝖾𝗉 𝗂𝗇𝗍𝗈 𝗍𝗁𝖾 𝗋𝖾𝖺𝗅𝗆 𝗈𝖿 𝖡𝗅𝖾𝗇, 𝗐𝗁𝖾𝗋𝖾 𝖾𝗏𝖾𝗋𝗒 𝗐𝗈𝗋𝖽 𝗂𝗌 𝖺 𝗉𝗈𝗋𝗍𝖺𝗅 𝗍𝗈 𝖻𝗈𝗎𝗇𝖽𝗅𝖾𝗌𝗌 𝗂𝗆𝖺𝗀𝗂𝗇𝖺𝗍𝗂𝗈𝗇 𝖺𝗇𝖽 𝗎𝗇𝗍𝗈𝗅𝖽 𝖺𝖽𝗏𝖾𝗇𝗍𝗎𝗋𝖾𝗌. 𝖧𝖾𝗋𝖾, 𝖺𝗆𝗂𝖽𝗌𝗍 𝗍𝗁𝖾 𝖽𝗂𝗀𝗂𝗍𝖺𝗅 𝗉𝖺𝗀𝖾𝗌 𝗈𝖿 𝗈𝗎𝗋 𝗏𝖺𝗌𝗍 𝗅𝗂𝖻𝗋𝖺𝗋𝗒, 𝗒𝗈𝗎'𝗅𝗅 𝖿𝗂𝗇𝖽 𝗆𝗈𝗋𝖾 𝗍𝗁𝖺𝗇 𝗃𝗎𝗌𝗍 𝖻𝗈𝗈𝗄𝗌 - 𝗒𝗈𝗎'𝗅𝗅 𝖽𝗂𝗌𝖼𝗈𝗏𝖾𝗋 𝗀𝖺𝗍𝖾𝗐𝖺𝗒𝗌 𝗍𝗈 𝗇𝖾𝗐 𝗐𝗈𝗋𝗅𝖽𝗌, 𝖾𝖼𝗁𝗈𝖾𝗌 𝗈𝖿 𝖻𝗒𝗀𝗈𝗇𝖾 𝖾𝗋𝖺𝗌, 𝖺𝗇𝖽 𝗐𝗁𝗂𝗌𝗉𝖾𝗋𝗌 𝗈𝖿 𝗎𝗇𝖼𝗁𝖺𝗋𝗍𝖾𝖽 𝖽𝗋𝖾𝖺𝗆𝗌. 𝖡𝗅𝖾𝗇 𝗂𝗌𝗇'𝗍 𝗃𝗎𝗌𝗍 𝖺 𝗉𝗅𝖺𝗍𝖿𝗈𝗋𝗆; 𝗂𝗍'𝗌 𝖺 𝗌𝖺𝗇𝖼𝗍𝗎𝖺𝗋𝗒 𝖿𝗈𝗋 𝗍𝗁𝖾 𝗋𝖾𝗌𝗍𝗅𝖾𝗌𝗌 𝗆𝗂𝗇𝖽, 𝖺 𝗁𝖺𝗏𝖾𝗇 𝖿𝗈𝗋 𝗍𝗁𝖾 𝗂𝗇𝗌𝖺𝗍𝗂𝖺𝖻𝗅𝖾 𝖼𝗎𝗋𝗂𝗈𝗌𝗂𝗍𝗒 𝗈𝖿 𝗍𝗁𝖾 𝗌𝗈𝗎𝗅. 𝖫𝗈𝗌𝖾 𝗒𝗈𝗎𝗋𝗌𝖾𝗅𝖿 𝗂𝗇 𝗍𝗁𝖾 𝗅𝖺𝖻𝗒𝗋𝗂𝗇𝗍𝗁 𝗈𝖿 𝗈𝗎𝗋 𝖼𝗈𝗅𝗅𝖾𝖼𝗍𝗂𝗈𝗇, 𝗐𝗁𝖾𝗋𝖾 𝖾𝖺𝖼𝗁 𝗍𝗂𝗍𝗅𝖾 𝖻𝖾𝖼𝗄𝗈𝗇𝗌 𝗐𝗂𝗍𝗁 𝗍𝗁𝖾 𝗉𝗋𝗈𝗆𝗂𝗌𝖾 𝗈𝖿 𝖽𝗂𝗌𝖼𝗈𝗏𝖾𝗋𝗒 𝖺𝗇𝖽 𝖾𝗇𝗅𝗂𝗀𝗁𝗍𝖾𝗇𝗆𝖾𝗇𝗍. 𝖥𝗋𝗈𝗆 𝖾𝗉𝗂𝖼 𝗌𝖺𝗀𝖺𝗌 𝗍𝗁𝖺𝗍 𝗌𝗉𝖺𝗇 𝗀𝖺𝗅𝖺𝗑𝗂𝖾𝗌 𝗍𝗈 𝗂𝗇𝗍𝗂𝗆𝖺𝗍𝖾 𝗍𝖺𝗅𝖾𝗌 𝗍𝗁𝖺𝗍 𝗌𝗍𝗂𝗋 𝗍𝗁𝖾 𝗌𝖾𝗇𝗌𝖾𝗌, 𝖡𝗅𝖾𝗇 𝖼𝖺𝗍𝖾𝗋𝗌 𝗍𝗈 𝖾𝗏𝖾𝗋𝗒 𝖼𝗋𝖺𝗏𝗂𝗇𝗀, 𝗂𝗇𝖼𝗅𝗎𝖽𝗂𝗇𝗀 𝗍𝗁𝖾 𝖿𝗈𝗋𝖻𝗂𝖽𝖽𝖾𝗇 𝖺𝗅𝗅𝗎𝗋𝖾 𝗈𝖿 𝗌𝗆𝗎𝗍. 𝖣𝖾𝗅𝗏𝖾 𝗂𝗇𝗍𝗈 𝗍𝗁𝖾 𝖽𝖾𝗉𝗍𝗁𝗌 𝗈𝖿 𝖽𝖾𝗌𝗂𝗋𝖾, 𝗐𝗁𝖾𝗋𝖾 𝗉𝖺𝗌𝗌𝗂𝗈𝗇 𝗂𝗇𝗍𝖾𝗋𝗍𝗐𝗂𝗇𝖾𝗌 𝗐𝗂𝗍𝗁 𝗉𝗋𝗈𝗌𝖾 𝖺𝗇𝖽 𝖻𝗈𝗎𝗇𝖽𝖺𝗋𝗂𝖾𝗌 𝖻𝗅𝗎𝗋 𝖻𝖾𝗍𝗐𝖾𝖾𝗇 𝖿𝖺𝗇𝗍𝖺𝗌𝗒 𝖺𝗇𝖽 𝗋𝖾𝖺𝗅𝗂𝗍𝗒. 𝖶𝗁𝖾𝗍𝗁𝖾𝗋 𝗒𝗈𝗎 𝗌𝖾𝖾𝗄 𝗍𝗁𝖾 𝗍𝗁𝗋𝗂𝗅𝗅 𝗈𝖿 𝖺𝖽𝗏𝖾𝗇𝗍𝗎𝗋𝖾 𝗈𝗋 𝗍𝗁𝖾 𝗌𝖾𝖽𝗎𝖼𝗍𝗂𝗈𝗇 𝗈𝖿 𝗍𝗁𝖾 𝖿𝗈𝗋𝖻𝗂𝖽𝖽𝖾𝗇, 𝖡𝗅𝖾𝗇 𝗐𝖾𝗅𝖼𝗈𝗆𝖾𝗌 𝗒𝗈𝗎 𝗐𝗂𝗍𝗁 𝗈𝗉𝖾𝗇 𝖺𝗋𝗆𝗌. 𝖩𝗈𝗂𝗇 𝗎𝗌 𝗈𝗇 𝖺 𝗃𝗈𝗎𝗋𝗇𝖾𝗒 𝗐𝗁𝖾𝗋𝖾 𝗍𝗁𝖾 𝗆𝖺𝗀𝗂𝖼 𝗈𝖿 𝗌𝗍𝗈𝗋𝗒𝗍𝖾𝗅𝗅𝗂𝗇𝗀 𝗄𝗇𝗈𝗐𝗌 𝗇𝗈 𝖻𝗈𝗎𝗇𝖽𝗌 𝖺𝗇𝖽 𝖾𝗏𝖾𝗋𝗒 𝗉𝖺𝗀𝖾 𝗁𝗈𝗅𝖽𝗌 𝗍𝗁𝖾 𝗉𝗋𝗈𝗆𝗂𝗌𝖾 𝗈𝖿 𝖾𝖼𝗌𝗍𝖺𝗌𝗒.</p>
+        </div>
+
+        <div class="section">
+            <h2>Latest Releases</h2>
+            <ul>
+                <li><button onclick="redirectToEbook('blen1')" onmouseover="buttonHoverEffect(this)" onmouseout="buttonNormalEffect(this)">Read Blen1</button></li>
+                <li><button onclick="redirectToEbook('blen2')" onmouseover="buttonHoverEffect(this)" onmouseout="buttonNormalEffect(this)">Read Blen2</button></li>
+                <li><button onclick="redirectToEbook('blen3')" onmouseover="buttonHoverEffect(this)" onmouseout="buttonNormalEffect(this)">Read Blen3</button></li>
+                <!-- Add more buttons for additional releases -->
+            </ul>
+        </div>
+        
+        <!-- Loading overlay -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <p class="loading-text">Loading...</p>
+        </div>
+        
+        <script>
+            function redirectToEbook(ebookName) {
+                // Show loading overlay
+                document.getElementById('loadingOverlay').style.display = 'flex';
+                
+                // Construct the URL of the ebook page
+                var ebookURL = '/ebooks/' + ebookName + '.html'; // Assuming ebook pages are in the "ebooks" directory
+                
+                // Redirect to the ebook page
+                window.location.href = ebookURL;
+            }
+        
+            function buttonHoverEffect(button) {
+                button.style.backgroundColor = '#4CAF50'; // Change background color on hover
+            }
+        
+            function buttonNormalEffect(button) {
+                button.style.backgroundColor = ''; // Restore default background color
+            }
+        </script>
+        <div class="section">
+            <h2>̷F̷̷e̷a̷̷t̷̷u̷̷r̷̷e̷̷d̷ ̷A̷̷u̷̷t̷̷h̷̷o̷̷r̷̷s̷</h2>
+            <ul>
+                <li><a href="#">Author Name 1</a></li>
+                <li><a href="#">Author Name 2</a></li>
+                <li><a href="#">Author Name 3</a></li>
+                <!-- Add more authors as needed -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&#169; 2024 Blen. All rights reserved.</p>
+    </div>
+
+    <!-- Custom mouse pointer -->
+    <div id="pointer"></div>
+
+<!-- JavaScript for tracking mouse movement -->
+<!-- JavaScript for tracking mouse movement -->
+<script>
+    // Function to track mouse movement and update pointer position
+    function trackMouse(event) {
+        // Get the pointer element
+        var pointer = document.getElementById('pointer');
+
+        // Calculate the new position of the pointer based on mouse coordinates
+        var newLeft = event.clientX - pointer.offsetWidth / 2 + 'px';
+        var newTop = event.clientY - pointer.offsetHeight / 2 + 'px';
+
+        // Update the position of the pointer
+        pointer.style.left = newLeft;
+        pointer.style.top = newTop;
+
+        // Ensure the pointer stays within the viewport bounds
+        adjustPointerPosition(pointer);
+
+        // Apply visual effects to the pointer
+        applyVisualEffects(pointer, event.clientX, event.clientY);
+    }
+
+    // Function to ensure the pointer stays within the viewport bounds
+    function adjustPointerPosition(pointer) {
+        var viewportWidth = window.innerWidth;
+        var viewportHeight = window.innerHeight;
+
+        // Adjust left position
+        pointer.style.left = Math.max(0, Math.min(parseInt(pointer.style.left), viewportWidth - pointer.offsetWidth)) + 'px';
+
+        // Adjust top position
+        pointer.style.top = Math.max(0, Math.min(parseInt(pointer.style.top), viewportHeight - pointer.offsetHeight)) + 'px';
+    }
+
+    // Function to apply visual effects to the pointer
+    function applyVisualEffects(pointer, clientX, clientY) {
+        // Set background color to white
+        pointer.style.backgroundColor = '#ffffff';
+
+        // Add a shadow effect to the pointer
+        var shadow = calculateShadow(clientX, clientY);
+        pointer.style.boxShadow = shadow;
+    }
+
+    // Function to calculate shadow based on pointer position
+    function calculateShadow(x, y) {
+        var offsetX = (x / window.innerWidth - 0.5) * 20; // Offset in X direction
+        var offsetY = (y / window.innerHeight - 0.5) * 20; // Offset in Y direction
+        return offsetX + 'px ' + offsetY + 'px 10px rgba(0, 0, 0, 0.5)'; // Return shadow string
+    }
+
+    // Add event listener to track mouse movement on the entire document
+    document.addEventListener('mousemove', trackMouse);
+</script>
+
+
+
+</body>
+</html>

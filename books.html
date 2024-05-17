@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Blen - Books</title>
+    <style>
+        /* Your CSS styling goes here */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            font-size: 2.5em;
+            margin: 0;
+            padding: 0;
+            line-height: 1.2;
+        }
+
+        .header img {
+            width: 50px; /* Adjust as needed */
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .navbar {
+            background-color: #555;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .navbar a {
+            font-family: '', sans-serif;
+            font-size: 1.2em;
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 5px;
+            border-bottom: 2px solid transparent;
+            transition: border-bottom 0.3s;
+        }
+
+        .navbar a:hover {
+            border-bottom: 2px solid #fff;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .section p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+
+        .section ul li {
+            margin-bottom: 10px;
+        }
+
+        .section ul li a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .section ul li a:hover {
+            color: #555;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        /* Pop-up box */
+        .popup {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .popup-content {
+            display: none;
+            position: absolute;
+            background-color: #555;
+            padding: 5px;
+            border-radius: 5px;
+            z-index: 1;
+            top: 100%; /* Adjust the distance from the trigger element */
+            left: 0;
+            width: 200px; /* Set the width of the popup box */
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Add box shadow */
+        }
+
+        .popup-content a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .popup-content a:hover {
+            background-color: #444;
+        }
+
+        .popup:hover .popup-content {
+            display: block;
+        }
+
+        /* Custom mouse pointer */
+        #pointer {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background-color: orange;
+            border-radius: 50%;
+            opacity: 0.6;
+            pointer-events: none; /* Ensure the pointer doesn't interfere with other elements */
+            transition: opacity 0.3s, transform 0.1s; /* Smoother transition */
+        }
+
+        /* Custom styles for the navbar */
+.navbar .popup span {
+    color: #fff; /* Change text color to white */
+    font-size: 1.2em; /* Increase text size */
+    animation: glow 1.5s ease-in-out infinite alternate; /* Apply the glow animation */
+}
+
+/* Define the glow animation */
+/* Define the glow animation */
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 10px #dddada, 0 0 20px #dddada, 0 0 30px #dddada; /* Initial glow effect */
+    }
+    50% {
+        text-shadow: 0 0 15px #dddada 0 0 25px #dddada, 0 0 35px #dddada; /* Intermediate glow effect */
+    }
+    100% {
+        text-shadow: 0 0 10px #dddada, 0 0 20px #dddada, 0 0 30px #dddada; /* Final glow effect */
+    }
+}
+.books-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    grid-template-rows: repeat(6, auto); /* 6 rows */
+    gap: 20px;
+}
+
+.book {
+    text-align: center;
+}
+
+.book img {
+    width: 100%; /* Ensure images fill the container */
+    border-radius: 8px; /* Add some border radius for aesthetics */
+}
+
+    </style>
+</head>
+<body onmousemove="trackMouse(event)">
+    <!-- Header -->
+    <div class="header">
+        <div class="container">
+            <h1> ꌃ꒒ꍟꈤ <img src="static/logo.jpeg" alt="Logo"></h1>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+     <div class="navbar">
+        <a href="home.html">̷H̷̷o̷̷m̷̷e̷</a>
+        <a href="about.html">̷A̷̷b̷̷o̷̷u̷̷t̷ ̷U̷̷s̷</a>
+        <a href="books.html">̷B̷̷o̷̷o̷̷k̷̷s̷</a>
+        <a href="#">̷A̷̷u̷̷t̷̷h̷̷o̷̷r̷̷s̷</a>
+        <a href="#">̷P̷̷u̷̷b̷̷l̷̷i̷̷s̷̷h̷̷i̷̷n̷̷g̷</a>
+        <a href="#">̷C̷̷o̷̷n̷̷t̷a̷̷c̷̷t̷</a>
+        <div class="popup">
+            <span>̷E̷̷x̷̷p̷̷l̷̷o̷̷r̷̷e̷ &#9662;</span> <!-- Adding a down arrow -->
+            <div class="popup-content">
+                <a href="your_all_time_fav.html">̷Y̷̷o̷̷u̷̷r̷ ̷A̷̷l̷̷l̷-̷T̷̷i̷̷m̷̷e̷ ̷F̷a̷̷v̷</a>
+                <a href="top_10_in_blen.html">̷T̷̷o̷̷p̷ ̷1̷̷0̷ ̷i̷̷n̷ ̷B̷̷l̷̷e̷̷n̷</a>
+                <a href="categories.html">̷C̷a̷̷t̷̷e̷̷g̷̷o̷̷r̷̷i̷̷e̷̷s̷</a>
+                <a href="publish.html">̷P̷̷u̷̷b̷̷l̷̷i̷̷s̷̷h̷</a>
+                <a href="books.html">̷R̷̷e̷a̷̷d̷</a>
+                <a href="about.html">̷A̷̷b̷̷o̷̷u̷̷t̷</a>
+                <a href="contact.html">̷C̷̷o̷̷n̷̷t̷a̷̷c̷̷t̷</a>
+            </div>
+        </div>
+    </div>
+ <!-- Main Content -->
+ <div class="container">
+    <div class="section">
+        <h2>Find your intrests here!</h2>
+        <p>
+
+            Discover Your Next Read
+
+        Welcome to our books page! Explore a diverse collection of captivating reads spanning various genres and topics. From thrilling adventures to insightful reflections, find your next favorite book here.</p>
+    </div>
+    <div class="section">
+        <h2>Choose what ya wanna read</h2>
+        <ul class="books-list">
+            <li>
+                <div class="book">
+                    <img src="book1.jpg" alt="Book 1">
+                    <p class="book-name">Book 1 Name</p>
+                </div>
+            </li>
+            <li>
+                <div class="book">
+                    <img src="book2.jpg" alt="Book 2">
+                    <p class="book-name">Book 2 Name</p>
+                </div>
+            </li>
+            <li>
+                <div class="book">
+                    <img src="book3.jpg" alt="Book 3">
+                    <p class="book-name">Book 3 Name</p>
+                </div>
+            </li>
+            <li>
+                <div class="book">
+                    <img src="book4.jpg" alt="Book 4">
+                    <p class="book-name">Book 4 Name</p>
+                </div>
+            </li>
+            <!-- Repeat this pattern for the remaining books -->
+            <li>
+                <div class="book">
+                    <img src="book5.jpg" alt="Book 5">
+                    <p class="book-name">Book 5 Name</p>
+                </div>
+            </li>
+            <li>
+                <div class="book">
+                    <img src="book6.jpg" alt="Book 6">
+                    <p class="book-name">Book 6 Name</p>
+                </div>
+            </li>
+            <li>
+                <div class="book">
+                    <img src="book7.jpg" alt="Book 7">
+                    <p class="book-name">Book 6 Name</p>
+                </div>
+            </li>
+            <li>
+                <div class="book">
+                    <img src="book8.jpg" alt="Book 8">
+                    <p class="book-name">Book 6 Name</p>
+                </div>
+            </li>
+            <li>
+                <div class="book">
+                    <img src="book9.jpg" alt="Book 9">
+                    <p class="book-name">Book 6 Name</p>
+                </div>
+            </li>
+            <li>
+                <div class="book">
+                    <img src="book10.jpg" alt="Book 10">
+                    <p class="book-name">Book 10 Name</p>
+                </div>
+            </li>
+            <li>
+                <div class="book">
+                    <img src="book11.jpg" alt="Book 11">
+                    <p class="book-name">Book 11 Name</p>
+                </div>
+            </li>
+            <li>
+                <div class="book">
+                    <img src="book12.jpg" alt="Book 12">
+                    <p class="book-name">Book 12 Name</p>
+                </div>
+            </li>
+            <li>
+                <div class="book">
+                    <img src="book13.jpg" alt="Book 13">
+                    <p class="book-name">Book 13 Name</p>
+                </div>
+            </li>
+            <li>
+                <div class="book">
+                    <img src="book14.jpg" alt="Book 14">
+                    <p class="book-name">Book 14 Name</p>
+                </div>
+            </li>
+            <li>
+                <div class="book">
+                    <img src="book15.jpg" alt="Book 15">
+                    <p class="book-name">Book 15 Name</p>
+                </div>
+            </li>
+            <li>
+                <div class="book">
+                    <img src="book16.jpg" alt="Book 16">
+                    <p class="book-name">Book 16 Name</p>
+                </div>
+            </li>
+            <li>
+                <div class="book">
+                    <img src="book17.jpg" alt="Book 17">
+                    <p class="book-name">Book 17 Name</p>
+                </div>
+            </li>
+            <li>
+                <div class="book">
+                    <img src="book18.jpg" alt="Book 18">
+                    <p class="book-name">Book 18 Name</p>
+                </div>
+            </li>
+            <li>
+                <div class="book">
+                    <img src="book19.jpg" alt="Book 19">
+                    <p class="book-name">Book 19 Name</p>
+                </div>
+            </li>
+            <li>
+                <div class="book">
+                    <img src="book20.jpg" alt="Book 20">
+                    <p class="book-name">Book 20 Name</p>
+                </div>
+            </li>
+            <li>
+                <div class="book">
+                    <img src="book21.jpg" alt="Book 21">
+                    <p class="book-name">Book 21 Name</p>
+                </div>
+            </li>
+            <li>
+                <div class="book">
+                    <img src="book22.jpg" alt="Book 22">
+                    <p class="book-name">Book 22 Name</p>
+                </div>
+            </li>
+            <li>
+                <div class="book">
+                    <img src="book23.jpg" alt="Book 23">
+                    <p class="book-name">Book 23 Name</p>
+                </div>
+            </li>
+            <li>
+                <div class="book">
+                    <img src="book24.jpg" alt="Book 24">
+                    <p class="book-name">Book 24 Name</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    
+    <style>
+        /* Style for books section */
+        .books-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+    
+        .book {
+            text-align: center;
+        }
+    
+        .book img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    
+        .book-name {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
+        }
+    </style>
+    
+    <script>
+        // Function to redirect to reading page
+        function redirectToReadingPage(bookNumber) {
+            // Construct the URL of the reading page
+            var readingPageURL = '/readingbook' + bookNumber + '.html';
+    
+            // Redirect to the reading page
+            window.location.href = readingPageURL;
+        }
+    
+        // Attach click event to book images
+        var bookImages = document.querySelectorAll('.book img');
+        bookImages.forEach(function(bookImage, index) {
+            bookImage.addEventListener('click', function() {
+                redirectToReadingPage(index + 1);
+            });
+        });
+    
+        // Attach click event to book names
+        var bookNames = document.querySelectorAll('.book-name');
+        bookNames.forEach(function(bookName, index) {
+            bookName.addEventListener('click', function() {
+                redirectToReadingPage(index + 1);
+            });
+        });
+    </script>
+    
